@@ -16,7 +16,6 @@ public class UserService {
     @Autowired
     private LoginDao loginDao;
 
-    // 사용자 인증
     public boolean authenticateUser(String username, String password) {
         boolean result = loginDao.validateUser(username, password);
         if(!result) {
@@ -24,15 +23,12 @@ public class UserService {
             return false;
         }
 
-        // UsernamePasswordAuthenticationToken 객체 생성
         Authentication auth = new UsernamePasswordAuthenticationToken(username, password, AuthorityUtils.createAuthorityList("ROLE_USER"));
 
 
-        // SecurityContext에 Authentication 객체 설정
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(auth);
 
-        // SecurityContextHolder에 새로운 SecurityContext 설정
         SecurityContextHolder.setContext(context);
         return true;
     }

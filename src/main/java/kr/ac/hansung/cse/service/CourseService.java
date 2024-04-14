@@ -13,7 +13,6 @@ public class CourseService {
     @Autowired
     private CourseDao courseDao;
 
-    //그룹별로 보는함수.
     public List<Course> getCourseGroupBySemester() {
         return courseDao.getCourseGroupBySemester();
     }

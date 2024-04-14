@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public class OfferDao {
 
-    private JdbcTemplate jdbcTemplate;  // psa(portable service abstraction, sql(x) api
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
@@ -26,7 +26,7 @@ public class OfferDao {
         return jdbcTemplate.queryForObject(sqlStatement, Integer.class);
 
     }
-    //query and return a single object
+
     public Offer getOffer(String name) {
 
         String sqlStatement= "select * from offers where name=?";
@@ -48,8 +48,7 @@ public class OfferDao {
                 });
     }
 
-    //query and return multiple objects
-    // cRud method
+
     public List<Offer> getOffers() {
 
         String sqlStatement= "select * from offers";
@@ -71,7 +70,6 @@ public class OfferDao {
     }
 
 
-    // Crud method
     public boolean insert(Offer offer) {
 
         String name= offer.getName();
@@ -83,7 +81,7 @@ public class OfferDao {
         return (jdbcTemplate.update(sqlStatement, new Object[] {name, email, text}) == 1);
     }
 
-    // crUd method
+
     public boolean update(Offer offer) {
 
         int id = offer.getId();
@@ -96,7 +94,7 @@ public class OfferDao {
         return (jdbcTemplate.update(sqlStatement, new Object[] {name, email, text, id}) == 1);
     }
 
-    //cruD method
+
     public boolean delete(int id) {
         String sqlStatement= "delete from offers where id=?";
         return (jdbcTemplate.update(sqlStatement, new Object[] {id}) == 1);

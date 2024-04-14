@@ -20,14 +20,14 @@ public class LoginDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    // 사용자 이름과 비밀번호로 로그인을 시도하고, 유효한 사용자인지 확인
+
     public boolean validateUser(String username, String password) {
         String sqlStatement = "select count(*) from user where username=? and password=?";
         Integer count = jdbcTemplate.queryForObject(sqlStatement, new Object[]{username, password}, Integer.class);
         return count != null && count == 1;
     }
 
-    // 사용자 정보 가져오기
+
     public User getUser(String username) {
         String sqlStatement = "select * from users where username=?";
         return jdbcTemplate.queryForObject(sqlStatement, new Object[]{username}, new RowMapper<User>() {

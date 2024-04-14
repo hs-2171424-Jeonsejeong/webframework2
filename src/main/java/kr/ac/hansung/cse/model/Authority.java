@@ -21,12 +21,3 @@ public class Authority {
     @Size(min = 2, max = 200, message = "Authority must be between 2 and 200 characters")
     private String authority;
 }
-/*
-
-CREATE TABLE Authority (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL CHECK (CHAR_LENGTH(username) >= 2),
-    authority VARCHAR(200) NOT NULL CHECK (CHAR_LENGTH(authority) >= 2)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-*/

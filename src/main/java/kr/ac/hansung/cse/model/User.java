@@ -25,13 +25,3 @@ public class User {
     @Size(min = 5, max = 100, message = "Password must be between 5 and 100 characters")
     private String password;
 }
-/*
-
-CREATE TABLE User (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) NOT NULL CHECK (CHAR_LENGTH(username) >= 2),
-    email VARCHAR(200) NOT NULL CHECK (CHAR_LENGTH(email) >= 2),
-    password VARCHAR(100) NOT NULL CHECK (CHAR_LENGTH(password) >= 5)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-*/
