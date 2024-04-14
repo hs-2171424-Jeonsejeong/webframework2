@@ -101,5 +101,4 @@ public class OfferDao {
         String sqlStatement= "delete from offers where id=?";
         return (jdbcTemplate.update(sqlStatement, new Object[] {id}) == 1);
     }
-
 }

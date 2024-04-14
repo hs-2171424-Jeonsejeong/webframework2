@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+// 수강신청
 @Getter
 @Setter
 @ToString
@@ -26,3 +27,14 @@ public class Offer {
     @Size(min=5, max=100, message="Text must be between 5 and 100 chars")
     private String text;
 }
+/*
+CREATE TABLE `Offer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `text` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `valid_email` CHECK (REGEXP_LIKE(email, '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$'))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+*/

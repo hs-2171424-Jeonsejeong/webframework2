@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="kr.ac.hansung.cse.util.UserUtils" %>
 
 <html>
 
@@ -21,8 +22,8 @@
 </head>
 <body>
 <div class="container">
-    <form class="form-signin" method="post" action="<c:url value="/login" />">
-        <h2 class="form-signin-heading">Please sign in</h2>
+    <form class="form-signin" method="post" action="<c:url value="/auth" />">
+        <h2 class="form-signin-heading">로그인 아이디와 비밀번호를 입력해 주세요.</h2>
 
         <c:if test="${not empty errorMsg}">
             <div style="color: #ff0000;"> <h3> ${errorMsg} </h3></div>
@@ -42,6 +43,18 @@
         </p>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"  />
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+        <c:if test="${UserUtils.isAuthenticated()}">
+            <script>
+                // 로그인이 완료되면 홈페이지로 자동 이동
+                window.location.href = '<c:url value="/"/>';
+            </script>
+            <p>
+                <a href="<c:url value='/' />" class="btn btn-lg btn-success btn-block">로그인 완료 / 홈으로 가기</a>
+            </p>
+        </c:if>
+
+
     </form>
 </div>
 </body>
