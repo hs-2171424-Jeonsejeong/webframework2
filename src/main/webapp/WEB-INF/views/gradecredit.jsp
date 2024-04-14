@@ -38,7 +38,7 @@
         <th>수강년도</th>
         <th>수강학기</th>
         <th>학점</th>
-        <th>자세히보기</th>
+        <th>링크</th>
     </tr>
     <c:set var="totalCredits" value="0" />
     <c:forEach var="course" items="${courses}">
@@ -47,7 +47,7 @@
             <td>${course.getSemester()}</td>
             <td>${course.getCredits()}</td>
             <td>
-                <a href="http://localhost:8080/grade-credit/detail/${course.getYear()}/${course.getSemester()}">자세히보기</a>
+                <a href="http://localhost:8080/grade-credit/detail/${course.getYear()}/${course.getSemester()}">링크</a>
             </td>
             <c:set var="totalCredits" value="${totalCredits + course.getCredits()}" />
         </tr>

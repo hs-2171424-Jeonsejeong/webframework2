@@ -26,26 +26,25 @@ public class CourseController {
         List <Course> courses = courseService.getSemesterCurrent(year, semester);
         model.addAttribute("courses", courses);
 
-        return "semester"; //view를 만들어준다.
+        return "semester";
     }
 
-    // 1) 그룹 단위로 볼수 있는 화면
     @RequestMapping("/grade-credit")
     public String showSemesterCourses(Model model) {
         List <Course> courses = courseService.getCourseGroupBySemester();
         model.addAttribute("courses", courses);
         return "gradecredit";
     }
-    // 1-1) 연도/학기 선택시
+
     @RequestMapping("/grade-credit/detail/{year}/{semester}")
     public String showSemesterCoursesDetail(@PathVariable String year,
                                             @PathVariable int semester, Model model) {
         List<Course> courses = courseService.getSemesterCurrent(year, semester);
         model.addAttribute("courses", courses);
 
-        return "gradecreditdetail"; // view를 만들어준다.
+        return "gradecreditdetail";
     }
-    // 2) 수강신청하기
+
     @RequestMapping("/register-course")
     public String showRegister(Model model) {
         Course crs = new Course();
@@ -53,7 +52,7 @@ public class CourseController {
         model.addAttribute("course", new Course());
         return "register";
     }
-    // 2-1) 수강신청 처리
+
     @RequestMapping("/register-submit")
     public String registerSubmit(Model model, @Valid Course course, BindingResult result) { //DB에 저장해야함
         course.setYear(2024);
@@ -64,10 +63,10 @@ public class CourseController {
             for(ObjectError error:errors) {
                 System.out.println(error.getDefaultMessage());
             }
-            return "register"; //다시 입력을 받게 보냄
+            return "register";
         }
 
-        courseService.insert(course); //수강신청하기.
-        return "registersuccess"; //view를 만들어준다. 웹폼을 만든다.
+        courseService.insert(course);
+        return "registersuccess";
     }
 }
